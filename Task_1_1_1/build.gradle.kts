@@ -8,3 +8,11 @@ tasks.jacocoTestReport {
         xml.required.set(true)
     }
 }
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
+}
+
+repositories {
+    mavenCentral()
+}
