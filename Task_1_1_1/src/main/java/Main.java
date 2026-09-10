@@ -1,6 +1,11 @@
 import java.util.Arrays;
 
 public class Main {
+  /**
+   * Just main function...
+   * 
+   * @param args command line arguments
+   */
   public static void main(String[] args) {
   }
 
@@ -10,8 +15,9 @@ public class Main {
    * @param arr array to sort. mutable
    */
   static void sort(int[] arr) {
-    for (int i = arr.length / 2 - 1; i >= 0; i--)
+    for (int i = arr.length / 2 - 1; i >= 0; i--) {
       heapify(arr, arr.length, i);
+    }
 
     for (int i = arr.length - 1 ; i > 0 ; i--) {
       int tmp = arr[0];
@@ -34,10 +40,12 @@ public class Main {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-    if (left < n && arr[largest] < arr[left])
+    if (left < n && arr[largest] < arr[left]) {
       largest = left;
-    if (right < n && arr[largest] < arr[right])
+    }
+    if (right < n && arr[largest] < arr[right]) {
       largest = right;
+    }
 
     if (largest != i) {
       int tmp = arr[largest];
