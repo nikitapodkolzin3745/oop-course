@@ -60,4 +60,22 @@ class MainTest {
 
         assertArrayEquals(new int[]{}, arr);
     }
+
+    @Test
+    void sortTwoSizeArray() {
+        int[] arr = {5, 2};
+
+        Main.sort(arr);
+
+        assertArrayEquals(new int[]{2, 5}, arr);
+    }
+
+    @Test
+    void sortOneSizeArray() {
+        int[] arr = {1};
+
+        Main.sort(arr);
+
+        assertArrayEquals(new int[]{1}, arr);
+    }
 }
