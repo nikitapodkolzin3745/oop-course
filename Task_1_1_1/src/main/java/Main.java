@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/**
+ * entry class.
+ */
 public class Main {
     /**
     * Just main function...
@@ -10,7 +13,7 @@ public class Main {
     }
 
     /**
-    * Sorts an array using heapsort
+    * Sorts an array using heapsort.
     * 
     * @param arr array to sort. mutable
     */
@@ -19,7 +22,7 @@ public class Main {
             heapify(arr, arr.length, i);
         }
 
-        for (int i = arr.length - 1 ; i > 0 ; i--) {
+        for (int i = arr.length - 1; i > 0; i--) {
             int tmp = arr[0];
             arr[0] = arr[i];
             arr[i] = tmp;
