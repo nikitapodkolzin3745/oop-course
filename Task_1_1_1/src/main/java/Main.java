@@ -7,6 +7,11 @@ public class Main {
     System.out.println(Arrays.toString(arr));
   }
 
+  /**
+   * Sorts an array using heapsort
+   * 
+   * @param arr array to sort. mutable
+   */
   static void sort(int[] arr) {
     for (int i = arr.length / 2 - 1; i >= 0; i--)
       heapify(arr, arr.length, i);
@@ -20,6 +25,13 @@ public class Main {
     }
   }
 
+  /**
+   * Restores the heap property for the subtree rooted at i.
+   * 
+   * @param arr array to heapify
+   * @param n size of the heap
+   * @param i root index
+   */
   static void heapify(int[] arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
