@@ -3,14 +3,33 @@
   * Управляет ходом игры в блэкджек, раундами и счетом участников.
   */
 public class Game {
-    private Deck deck = new Deck();
-
-    private Player player = new Player("Игрок", deck);
-    private Dealer dealer = new Dealer("Дилер", deck);
+    private Deck deck;
+    private Player player;
+    private Dealer dealer;
 
     private int playerWins = 0;
     private int dealerWins = 0;
 
+    /**
+     * Создает обычную игру.
+     */
+    public Game() {
+        deck = new Deck();
+        player = new Player("Игрок", deck);
+        dealer = new Dealer("Дилер", deck);
+    }
+
+    /**
+     * Создает игру с указанными участниками.
+     *
+     * @param player игрок
+     * @param dealer дилер
+     */
+    Game(Player player, Dealer dealer) {
+        this.player = player;
+        this.dealer = dealer;
+    }
+    
     /**
      * Проводит один раунд игры.
      *
