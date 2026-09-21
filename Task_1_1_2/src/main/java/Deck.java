@@ -1,26 +1,39 @@
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * Представляет колоду из 52 игральных карт.
  */
 public class Deck {
-    private Card[] deck = new Card[52];
-    private int top = 0;
+    private final Deque<Card> deck;
 
     /**
-     * Создает колоду, заполняет ее картами и перемешивает.
+     * Создает обычную перемешанную колоду из 52 карт.
      */
-    Deck() {
-        int i = 0;
+    public Deck() {
+        List<Card> cards = new ArrayList<>();
 
-        for (int suitId = 0; suitId < Card.suits.length; suitId++) {
-            for (int meaningId = 0; meaningId < Card.meanings.length; meaningId++) {
-                deck[i++] = new Card(suitId, meaningId);
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
             }
         }
 
-        Collections.shuffle(Arrays.asList(deck));
+        Collections.shuffle(cards);
+        deck = new ArrayDeque<>(cards);
+    }
+
+    /**
+     * Создает колоду из заранее заданного набора карт.
+     * Используется в том числе для тестирования.
+     *
+     * @param cards карты колоды в порядке их выдачи
+     */
+    public Deck(List<Card> cards) {
+        deck = new ArrayDeque<>(cards);
     }
 
     /**
@@ -29,10 +42,6 @@ public class Deck {
      * @return карта из колоды или null, если колода пуста
      */
     public Card take() {
-        if (top < deck.length) {
-            return deck[top++];
-        }
-
-        return null;
+        return deck.pollFirst();
     }
 }

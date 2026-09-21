@@ -4,16 +4,18 @@ import java.util.Scanner;
  * Представляет игрока, который вводит решения через консоль.
  */
 public class Player extends Actor {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
     /**
      * Создает игрока.
      *
      * @param name имя игрока
      * @param deck колода, из которой игрок получает карты
+     * @param scanner источник пользовательского ввода
      */
-    Player(String name, Deck deck) {
+    Player(String name, Deck deck, Scanner scanner) {
         super(name, deck);
+        this.scanner = scanner;
     }
 
     /**

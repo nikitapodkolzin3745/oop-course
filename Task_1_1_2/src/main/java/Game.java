@@ -1,10 +1,9 @@
 /**
-  * Управляет ходом игры в блэкджек, раундами и счетом участников.
-  */
+ * Управляет ходом игры в блэкджек, раундами и счетом участников.
+ */
 public class Game {
-    private Deck deck;
-    private Player player;
-    private Dealer dealer;
+    private final Player player;
+    private final Dealer dealer;
 
     private int playerWins = 0;
     private int dealerWins = 0;
@@ -13,8 +12,14 @@ public class Game {
      * Создает обычную игру.
      */
     public Game() {
-        deck = new Deck();
-        player = new Player("Игрок", deck);
+        Deck deck = new Deck();
+
+        player = new Player(
+            "Игрок",
+            deck,
+            new java.util.Scanner(System.in)
+        );
+
         dealer = new Dealer("Дилер", deck);
     }
 
@@ -28,7 +33,16 @@ public class Game {
         this.player = player;
         this.dealer = dealer;
     }
-    
+
+    /**
+     * Запускает последовательность раундов.
+     */
+    public void play() {
+        for (int round = 1; ; round++) {
+            turn(round);
+        }
+    }
+
     /**
      * Проводит один раунд игры.
      *
@@ -65,7 +79,7 @@ public class Game {
         System.out.println("-------");
 
         while (true) {
-            Card card = player.takeACard();
+            Card card = player.takeCard();
 
             if (card == null) {
                 break;
@@ -102,8 +116,12 @@ public class Game {
 
         printHands();
 
-        while (dealer.getScore() < 17) {
-            Card card = dealer.takeACard();
+        while (dealer.shouldTake()) {
+            Card card = dealer.takeCard();
+
+            if (card == null) {
+                break;
+            }
 
             System.out.println();
             System.out.println(

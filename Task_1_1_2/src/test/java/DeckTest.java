@@ -1,7 +1,7 @@
-
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,6 +32,18 @@ public class DeckTest {
             deck.take();
         }
 
+        assertNull(deck.take());
+    }
+
+    @Test
+    void fixedDeckReturnsCardsInGivenOrder() {
+        Card first = new Card(Suit.CLUBS, Rank.ACE);
+        Card second = new Card(Suit.SPADES, Rank.KING);
+
+        Deck deck = new Deck(List.of(first, second));
+
+        assertEquals(first, deck.take());
+        assertEquals(second, deck.take());
         assertNull(deck.take());
     }
 }

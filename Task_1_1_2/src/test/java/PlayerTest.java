@@ -1,8 +1,6 @@
-
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,46 +8,37 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PlayerTest {
     @Test
     void playerTakesCardOnInputOne() {
-        InputStream original = System.in;
+        Scanner scanner = new Scanner("1\n");
+        Player player = new Player(
+            "Player",
+            new Deck(),
+            scanner
+        );
 
-        try {
-            System.setIn(new ByteArrayInputStream("1\n".getBytes()));
-
-            Player player = new Player("Player", new Deck());
-
-            assertTrue(player.shouldTake());
-        } finally {
-            System.setIn(original);
-        }
+        assertTrue(player.shouldTake());
     }
 
     @Test
     void playerStopsOnInputZero() {
-        InputStream original = System.in;
+        Scanner scanner = new Scanner("0\n");
+        Player player = new Player(
+            "Player",
+            new Deck(),
+            scanner
+        );
 
-        try {
-            System.setIn(new ByteArrayInputStream("0\n".getBytes()));
-
-            Player player = new Player("Player", new Deck());
-
-            assertFalse(player.shouldTake());
-        } finally {
-            System.setIn(original);
-        }
+        assertFalse(player.shouldTake());
     }
 
     @Test
     void playerRepeatsAfterInvalidInput() {
-        InputStream original = System.in;
+        Scanner scanner = new Scanner("x\n1\n");
+        Player player = new Player(
+            "Player",
+            new Deck(),
+            scanner
+        );
 
-        try {
-            System.setIn(new ByteArrayInputStream("x\n1\n".getBytes()));
-
-            Player player = new Player("Player", new Deck());
-
-            assertTrue(player.shouldTake());
-        } finally {
-            System.setIn(original);
-        }
+        assertTrue(player.shouldTake());
     }
 }

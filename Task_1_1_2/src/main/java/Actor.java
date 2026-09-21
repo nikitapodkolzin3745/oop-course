@@ -40,7 +40,7 @@ public abstract class Actor {
      *
      * @return взятая карта или null, если карта не была взята
      */
-    public Card takeACard() {
+    public Card takeCard() {
         if (shouldTake()) {
             Card current = deck.take();
 

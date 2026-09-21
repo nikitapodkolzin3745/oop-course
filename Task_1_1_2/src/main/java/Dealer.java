@@ -1,3 +1,6 @@
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Представляет дилера, который автоматически принимает решения о взятии карт.
  */
@@ -53,11 +56,11 @@ public class Dealer extends Actor {
      * @return список видимых карт дилера
      */
     @Override
-    public java.util.List<Card> getVisibleHand() {
+    public List<Card> getVisibleHand() {
         if (!hiddenCard) {
             return hand;
         }
 
-        return java.util.Collections.singletonList(hand.get(0));
+        return Collections.singletonList(hand.get(0));
     }
 }

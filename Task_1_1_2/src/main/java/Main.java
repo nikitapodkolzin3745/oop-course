@@ -1,9 +1,9 @@
 /**
-  * Точка входа в консольную игру «Блэкджек».
-  */
+ * Точка входа в консольную игру «Блэкджек».
+ */
 public class Main {
     /**
-     * Запускает игру и начинает последовательность раундов.
+     * Запускает игру.
      *
      * @param args аргументы командной строки
      */
@@ -12,9 +12,6 @@ public class Main {
         System.out.println();
 
         Game game = new Game();
-
-        for (int round = 1; ; round++) {
-            game.turn(round);
-        }
+        game.play();
     }
 }

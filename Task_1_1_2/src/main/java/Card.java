@@ -1,39 +1,19 @@
-
- /**
-  * Представляет игральную карту с мастью, названием и значением.
-  */
+/**
+ * Представляет игральную карту с мастью, достоинством и значением.
+ */
 public class Card {
-    public static String[] suits = {
-        "Трефы",
-        "Пики",
-        "Червы",
-        "Бубны"
-    };
-
-    public static String[] meanings = {
-        "Туз", "Двойка", "Тройка", "Четверка", "Пятерка",
-        "Шестерка", "Семерка", "Восьмерка", "Девятка", "Десятка",
-        "Валет", "Дама", "Король"
-    };
-
-    private static int[] ranks = {
-        1, 2, 3, 4, 5,
-        6, 7, 8, 9, 10,
-        10, 10, 10
-    };
-
-    private int suitId;
-    private int meaningId;
+    private final Suit suit;
+    private final Rank rank;
 
     /**
-     * Создает карту по индексам масти и достоинства.
+     * Создает карту.
      *
-     * @param suitId индекс масти
-     * @param meaningId индекс достоинства
+     * @param suit масть карты
+     * @param rank достоинство карты
      */
-    Card(int suitId, int meaningId) {
-        this.suitId = suitId;
-        this.meaningId = meaningId;
+    Card(Suit suit, Rank rank) {
+        this.suit = suit;
+        this.rank = rank;
     }
 
     /**
@@ -42,7 +22,16 @@ public class Card {
      * @return значение карты
      */
     public int getRank() {
-        return ranks[meaningId];
+        return rank.getValue();
+    }
+
+    /**
+     * Возвращает достоинство карты.
+     *
+     * @return достоинство карты
+     */
+    public Rank getRankValue() {
+        return rank;
     }
 
     /**
@@ -51,7 +40,7 @@ public class Card {
      * @return название достоинства
      */
     public String getMeaning() {
-        return meanings[meaningId];
+        return rank.getName();
     }
 
     /**
@@ -60,7 +49,7 @@ public class Card {
      * @return название масти
      */
     public String getSuit() {
-        return suits[suitId];
+        return suit.getName();
     }
 
     /**
@@ -70,7 +59,6 @@ public class Card {
      */
     @Override
     public String toString() {
-        return getSuit() + " " + getMeaning()
-            + " (" + getRank() + ")";
+        return suit + " " + rank + " (" + getRank() + ")";
     }
 }
