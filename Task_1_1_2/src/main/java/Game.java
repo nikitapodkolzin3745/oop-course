@@ -197,4 +197,22 @@ public class Game {
 
         System.out.println();
     }
+
+    /**
+     * Возвращает количество побед игрока.
+     *
+     * @return число побед игрока
+     */
+    public int getPlayerWins() {
+        return playerWins;
+    }
+
+    /**
+     * Возвращает количество побед дилера.
+     *
+     * @return число побед дилера
+     */
+    public int getDealerWins() {
+        return dealerWins;
+    }
 }
