@@ -77,6 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Number</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in Unnamed Package">Expression</a></span></div>
+<div class="block">Represents an integer constant.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Number</a><wbr>(int&nbsp;number)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a constant expression.</div>
+</div>
 </div>
 </section>
 </li>
@@ -112,12 +115,16 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumber()" class="member-name-link">getNumber</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the stored integer value.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isNumber(java.lang.String,int,int)" class="member-name-link">isNumber</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;x,
  int&nbsp;begin,
  int&nbsp;end)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Checks whether a substring consists only of decimal digits.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in Unnamed Package">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -152,6 +159,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>Number</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Number</span><wbr><span class="parameters">(int&nbsp;number)</span></div>
+<div class="block">Creates a constant expression.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>number</code> - constant value</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -198,6 +210,15 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isNumber</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;x,
  int&nbsp;begin,
  int&nbsp;end)</span></div>
+<div class="block">Checks whether a substring consists only of decimal digits.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - source string</dd>
+<dd><code>begin</code> - inclusive start index</dd>
+<dd><code>end</code> - exclusive end index</dd>
+<dt>Returns:</dt>
+<dd>true if the substring is a decimal number</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -225,6 +246,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getNumber()">
 <h3>getNumber</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getNumber</span>()</div>
+<div class="block">Returns the stored integer value.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>constant value</dd>
+</dl>
 </section>
 </li>
 </ul>

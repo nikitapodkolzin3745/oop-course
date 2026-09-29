@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Operation</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in Unnamed Package">Expression</a></span></div>
+<div class="block">Base class for binary operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,7 +113,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(Expression,Expression)" class="member-name-link">Operation</a><wbr>(<a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a binary operation.</div>
+</div>
 </div>
 </section>
 </li>
@@ -134,16 +137,24 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromChar(char,Expression,Expression)" class="member-name-link">fromChar</a><wbr>(char&nbsp;c,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;l,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;r)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Creates an operation corresponding to the given operator.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in Unnamed Package">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLeft()" class="member-name-link">getLeft</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the left operand.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in Unnamed Package">Expression</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRight()" class="member-name-link">getRight</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the right operand.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isOperator(char)" class="member-name-link">isOperator</a><wbr>(char&nbsp;c)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Checks whether a character is a supported operator.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#operator()" class="member-name-link">operator</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
@@ -195,6 +206,12 @@ loadScripts(document, 'script');</script>
 <h3>Operation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Operation</span><wbr><span class="parameters">(<a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;right)</span></div>
+<div class="block">Creates a binary operation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - left operand</dd>
+<dd><code>right</code> - right operand</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -215,6 +232,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isOperator(char)">
 <h3>isOperator</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isOperator</span><wbr><span class="parameters">(char&nbsp;c)</span></div>
+<div class="block">Checks whether a character is a supported operator.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>c</code> - character to check</dd>
+<dt>Returns:</dt>
+<dd>true if the character is an operator</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -223,6 +247,15 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Operation.html" title="class in Unnamed Package">Operation</a></span>&nbsp;<span class="element-name">fromChar</span><wbr><span class="parameters">(char&nbsp;c,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;l,
  <a href="Expression.html" title="class in Unnamed Package">Expression</a>&nbsp;r)</span></div>
+<div class="block">Creates an operation corresponding to the given operator.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>c</code> - operator character</dd>
+<dd><code>l</code> - left operand</dd>
+<dd><code>r</code> - right operand</dd>
+<dt>Returns:</dt>
+<dd>created operation</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -239,12 +272,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getLeft()">
 <h3>getLeft</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in Unnamed Package">Expression</a></span>&nbsp;<span class="element-name">getLeft</span>()</div>
+<div class="block">Returns the left operand.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>left operand</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRight()">
 <h3>getRight</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in Unnamed Package">Expression</a></span>&nbsp;<span class="element-name">getRight</span>()</div>
+<div class="block">Returns the right operand.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>right operand</dd>
+</dl>
 </section>
 </li>
 <li>
