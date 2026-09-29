@@ -1,0 +1,53 @@
+public class Variable extends Expression {
+    private final String name;
+
+    public Variable(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Expression diff(String var) {
+        return new Number(name.equals(var) ? 1 : 0);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (! (other instanceof Expression otherExpr))
+            return false;
+        return otherExpr instanceof Variable o && name.equals(o.getName());
+    }
+
+    @Override
+    public Expression simplify() {
+        return this;
+    }
+
+    public static boolean isVariable(String x, int begin, int end) {
+        if (begin == end) return false;
+
+        if (!Character.isJavaIdentifierStart(x.charAt(begin)))
+            return false;
+
+        for (int i = begin + 1; i < end; i++)
+            if (!Character.isJavaIdentifierPart(x.charAt(i)))
+                return false;
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    protected Expression substitute(String var, Expression substituting) {
+        if (var.equals(name))
+            return substituting;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
