@@ -121,7 +121,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Expression.html" title="class in Unnamed Package">Expression</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;term)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Parses a fully parenthesized expression.</div>
+<div class="block">Parses an expression.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Expression.html" title="class in Unnamed Package">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
@@ -213,8 +213,6 @@ loadScripts(document, 'script');</script>
 <dd><code>substituting</code> - substitutions in the form "x = 1; y = 2"</dd>
 <dt>Returns:</dt>
 <dd>evaluated integer value</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if some variables remain unsubstituted</dd>
 </dl>
 </section>
 </li>
@@ -222,7 +220,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="parse(java.lang.String)">
 <h3>parse</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in Unnamed Package">Expression</a></span>&nbsp;<span class="element-name">parse</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;term)</span></div>
-<div class="block">Parses a fully parenthesized expression.</div>
+<div class="block">Parses an expression.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>term</code> - expression text</dd>
