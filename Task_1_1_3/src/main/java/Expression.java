@@ -13,14 +13,16 @@ public abstract class Expression {
 
     public abstract Expression simplify();
 
-    protected abstract Expression substitute(String var, Expression substituting);
+    protected abstract Expression substitute(
+            String var,
+            Expression substituting
+    );
 
     /**
      * Evaluates the expression after applying substitutions.
      *
      * @param substituting substitutions in the form "x = 1; y = 2"
      * @return evaluated integer value
-     * @throws IllegalStateException if some variables remain unsubstituted
      */
     public int eval(String substituting) {
         Expression current = this;
@@ -39,44 +41,122 @@ public abstract class Expression {
             return n.getNumber();
         }
 
-        throw new IllegalStateException("Not enough variables");
-    }
-
-    private static Expression parse(String term, int begin, int end) {
-        if (Number.isNumber(term, begin, end)) {
-            return new Number(Integer.parseInt(term, begin, end, 10));
-        }
-
-        if (Variable.isVariable(term, begin, end)) {
-            return new Variable(term.substring(begin, end));
-        }
-
-        int depth = 0;
-
-        for (int i = begin + 1; i < end - 1; i++) {
-            char c = term.charAt(i);
-
-            if (c == '(') {
-                depth++;
-            } else if (c == ')') {
-                depth--;
-            } else if (depth == 0 && Operation.isOperator(c)) {
-                Expression left = parse(term, begin + 1, i);
-                Expression right = parse(term, i + 1, end - 1);
-                return Operation.fromChar(c, left, right);
-            }
-        }
-
-        throw new IllegalArgumentException("Invalid expression");
+        throw new IllegalArgumentException("Not enough variables");
     }
 
     /**
-     * Parses a fully parenthesized expression.
+     * Parses an expression.
      *
      * @param term expression text
      * @return parsed expression tree
      */
     public static Expression parse(String term) {
-        return parse(term, 0, term.length());
+        return new Parser(term.replace(" ", "")).parse();
+    }
+
+    /**
+     * Recursive-descent parser with operator priorities.
+     */
+    private static class Parser {
+        private final String expression;
+        private int pos = 0;
+
+        Parser(String expression) {
+            this.expression = expression;
+        }
+
+        Expression parse() {
+            Expression result = parseExpression(1);
+
+            if (pos != expression.length()) {
+                throw new IllegalArgumentException(
+                        "Unexpected character: " + expression.charAt(pos)
+                );
+            }
+
+            return result;
+        }
+
+        private Expression parseExpression(int minPriority) {
+            Expression left = parseFactor();
+
+            while (pos < expression.length()) {
+                char op = expression.charAt(pos);
+
+                if (!Operation.isOperator(op)) {
+                    break;
+                }
+
+                int priority = Operation.priority(op);
+
+                if (priority < minPriority) {
+                    break;
+                }
+
+                pos++;
+
+                Expression right = parseExpression(priority + 1);
+                left = Operation.fromChar(op, left, right);
+            }
+
+            return left;
+        }
+
+        private Expression parseFactor() {
+            if (pos >= expression.length()) {
+                throw new IllegalArgumentException("Unexpected end");
+            }
+
+            if (expression.charAt(pos) == '(') {
+                pos++;
+
+                Expression inside = parseExpression(1);
+
+                if (pos >= expression.length()
+                        || expression.charAt(pos) != ')') {
+                    throw new IllegalArgumentException("Missing ')'");
+                }
+
+                pos++;
+                return inside;
+            }
+
+            int begin = pos;
+
+            while (pos < expression.length()
+                    && !Operation.isOperator(expression.charAt(pos))
+                    && expression.charAt(pos) != '('
+                    && expression.charAt(pos) != ')') {
+                pos++;
+            }
+
+            if (isNumber(expression, begin, pos)) {
+                return new Number(
+                        Integer.parseInt(expression, begin, pos, 10)
+                );
+            }
+
+            if (Variable.isVariable(expression, begin, pos)) {
+                return new Variable(expression.substring(begin, pos));
+            }
+
+            throw new IllegalArgumentException("Invalid token");
+        }
+
+        private boolean isNumber(String value, int begin, int end) {
+            if (begin == end) {
+                return false;
+            }
+
+            for (int i = begin; i < end; i++) {
+                char c = value.charAt(i);
+
+                if (c < '0' || c > '9') {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

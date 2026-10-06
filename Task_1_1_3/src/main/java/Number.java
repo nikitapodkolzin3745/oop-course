@@ -20,40 +20,16 @@ public class Number extends Expression {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Expression otherExpr)) {
+        if (!(other instanceof Number otherExpr)) {
             return false;
         }
 
-        return otherExpr instanceof Number o && number == o.getNumber();
+        return number == otherExpr.number;
     }
 
     @Override
     public Expression simplify() {
         return this;
-    }
-
-    /**
-     * Checks whether a substring consists only of decimal digits.
-     *
-     * @param x source string
-     * @param begin inclusive start index
-     * @param end exclusive end index
-     * @return true if the substring is a decimal number
-     */
-    public static boolean isNumber(String x, int begin, int end) {
-        if (begin == end) {
-            return false;
-        }
-
-        for (int i = begin; i < end; i++) {
-            char c = x.charAt(i);
-
-            if (c < '0' || c > '9') {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     @Override

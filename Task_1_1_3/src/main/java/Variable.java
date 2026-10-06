@@ -20,12 +20,11 @@ public class Variable extends Expression {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Expression otherExpr)) {
+        if (!(other instanceof Variable otherExpr)) {
             return false;
         }
 
-        return otherExpr instanceof Variable o
-                && name.equals(o.getName());
+        return name.equals(otherExpr.name);
     }
 
     @Override

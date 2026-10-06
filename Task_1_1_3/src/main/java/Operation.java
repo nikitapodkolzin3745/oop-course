@@ -40,6 +40,26 @@ public abstract class Operation extends Expression {
         return OPS.containsKey(c);
     }
 
+    private static final Map<Character, Integer> PRIORITY = Map.of(
+        '+', 1,
+        '-', 1,
+        '*', 2,
+        '/', 2
+    );
+
+    /**
+     * Returns a operation priority.
+     *
+     * @param c operation symbol
+     */
+    public static int priority(char c) {
+        Integer p = PRIORITY.get(c);
+        if (p == null) {
+            throw new IllegalArgumentException("Unknown operator");
+        }
+        return p;
+    }
+
     /**
      * Creates an operation corresponding to the given operator.
      *
@@ -60,13 +80,13 @@ public abstract class Operation extends Expression {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Expression otherExpr)) {
+        if (!(other instanceof Operation otherExpr)) {
             return false;
         }
 
-        return otherExpr instanceof Operation o
-                && left.equals(o.getLeft())
-                && right.equals(o.getRight());
+        return getClass() == otherExpr.getClass()
+                && left.equals(otherExpr.left)
+                && right.equals(otherExpr.right);
     }
 
     /**
