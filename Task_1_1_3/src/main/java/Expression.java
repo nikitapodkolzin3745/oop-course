@@ -6,11 +6,23 @@ public abstract class Expression {
     @Override
     public abstract String toString();
 
+    /**
+     * Calculates the derivative of this expression with respect to a variable.
+     *
+     * @param var variable to differentiate with respect to
+     * @return the derivative as an expression
+     */
     public abstract Expression diff(String var);
 
     @Override
     public abstract boolean equals(Object other);
 
+    /**
+     * Returns an equivalent expression simplified by applying applicable
+     * algebraic rules and evaluating constant operations.
+     *
+     * @return the simplified expression
+     */
     public abstract Expression simplify();
 
     protected abstract Expression substitute(

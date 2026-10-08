@@ -140,28 +140,51 @@ public class ExpressionTest {
 
     @Test
     void evalSimple() {
-        assertEquals(23, Expression.parse("(x+13)").eval("x = 10"));
+        Expression expression = new Add(new Variable("x"), new Number(13));
+        assertEquals(23, expression.eval("x = 10"));
     }
 
     @Test
     void evalMultipleVariables() {
         assertEquals(13,
-                Expression.parse("(x+y)").eval("x = 5; y = 8"));
+                new Add(new Variable("x"), new Variable("y"))
+                        .eval("x = 5; y = 8"));
+    }
+
+    @Test
+    void evalDivision() {
+        assertEquals(4,
+                new Div(new Variable("x"), new Variable("y"))
+                        .eval("x = 17; y = 4"));
     }
 
     @Test
     void evalAfterDerivative() {
-        String expr = "(((1+(7*x))*y)-((52+(7*x))*x))";
+        Expression expression = new Sub(
+                new Mul(
+                        new Add(
+                                new Number(1),
+                                new Mul(new Number(7), new Variable("x"))
+                        ),
+                        new Variable("y")
+                ),
+                new Mul(
+                        new Add(
+                                new Number(52),
+                                new Mul(new Number(7), new Variable("x"))
+                        ),
+                        new Variable("x")
+                )
+        );
 
         assertEquals(-983,
-                Expression.parse(expr)
-                        .diff("x")
-                        .eval("x = 67; y = 1"));
+                expression.diff("x").eval("x = 67; y = 1"));
     }
 
     @Test
     void evalMissingVariableThrows() {
         assertThrows(IllegalArgumentException.class,
-                () -> Expression.parse("(x+y)").eval("x = 5"));
+                () -> new Add(new Variable("x"), new Variable("y"))
+                        .eval("x = 5"));
     }
 }
