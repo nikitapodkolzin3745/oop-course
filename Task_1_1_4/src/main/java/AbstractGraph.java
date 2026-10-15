@@ -139,7 +139,8 @@ abstract class AbstractGraph implements Graph {
         try {
             String[] header = lines.get(0).split("\\s+");
             if (header.length != 1) {
-                throw new IllegalArgumentException("The first line must contain only the vertex count");
+                throw new IllegalArgumentException(
+                        "The first line must contain only the vertex count");
             }
             vertexCount = Integer.parseInt(header[0]);
             if (vertexCount < 0) {
@@ -153,13 +154,15 @@ abstract class AbstractGraph implements Graph {
         for (int lineIndex = 1; lineIndex < lines.size(); lineIndex++) {
             String[] endpoints = lines.get(lineIndex).split("\\s+");
             if (endpoints.length != 2) {
-                throw new IllegalArgumentException("Each edge line must contain exactly two vertex indexes");
+                throw new IllegalArgumentException(
+                        "Each edge line must contain exactly two vertex indexes");
             }
             try {
                 int from = Integer.parseInt(endpoints[0]);
                 int to = Integer.parseInt(endpoints[1]);
                 if (from < 0 || from >= vertexCount || to < 0 || to >= vertexCount) {
-                    throw new IllegalArgumentException("Edge endpoint is outside the declared vertex range");
+                    throw new IllegalArgumentException(
+                            "Edge endpoint is outside the declared vertex range");
                 }
                 edges.add(new int[]{from, to});
             } catch (NumberFormatException exception) {
@@ -167,7 +170,6 @@ abstract class AbstractGraph implements Graph {
             }
         }
 
-        // Сначала разбираем весь текст, чтобы при ошибке не менять текущий граф.
         clearStorage();
         vertices.clear();
         for (int i = 0; i < vertexCount; i++) {
@@ -214,7 +216,9 @@ abstract class AbstractGraph implements Graph {
 
     @Override
     public final String toString() {
-        StringBuilder result = new StringBuilder("Graph{vertices=").append(vertices.size()).append(", edges=[");
+        StringBuilder result = new StringBuilder("Graph{vertices=")
+            .append(vertices.size())
+            .append(", edges=[");
         boolean first = true;
         for (int from = 0; from < vertices.size(); from++) {
             for (int to = 0; to < vertices.size(); to++) {

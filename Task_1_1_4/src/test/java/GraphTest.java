@@ -71,7 +71,7 @@ class GraphTest {
             Vertex a = graph.addVertex();
             Vertex b = graph.addVertex();
             Vertex c = graph.addVertex();
-            Vertex isolated = graph.addVertex();
+            final Vertex isolated = graph.addVertex();
             graph.addEdge(a, c);
             graph.addEdge(b, c);
 
@@ -187,7 +187,8 @@ class GraphTest {
             assertThrows(IllegalArgumentException.class, () -> graph.removeVertex(foreign));
             assertThrows(IllegalArgumentException.class, () -> graph.addEdge(null, existing));
             assertThrows(UnsupportedOperationException.class, () -> graph.getVertices().clear());
-            assertThrows(UnsupportedOperationException.class, () -> graph.getNeighbors(existing).clear());
+                assertThrows(UnsupportedOperationException.class,
+                    () -> graph.getNeighbors(existing).clear());
 
             assertThrows(IllegalArgumentException.class, () -> graph.evalGraph(""));
             assertThrows(IllegalArgumentException.class, () -> graph.evalGraph("not-a-number"));
@@ -214,8 +215,10 @@ class GraphTest {
 
             assertEquals(before, graph.toString());
             assertEquals(verticesBefore, graph.getVertices());
-            assertEquals(Arrays.asList(verticesBefore.get(1)), graph.getNeighbors(verticesBefore.get(0)));
-            assertEquals(Arrays.asList(verticesBefore.get(2)), graph.getNeighbors(verticesBefore.get(1)));
+                assertEquals(Arrays.asList(verticesBefore.get(1)),
+                    graph.getNeighbors(verticesBefore.get(0)));
+                assertEquals(Arrays.asList(verticesBefore.get(2)),
+                    graph.getNeighbors(verticesBefore.get(1)));
         }
     }
 
@@ -228,7 +231,8 @@ class GraphTest {
             assertEquals("Graph{vertices=3, edges=[0->1, 2->2]}", graph.toString());
             assertEquals(Arrays.asList(graph.getVertices().get(1)),
                     graph.getNeighbors(graph.getVertices().get(0)));
-            assertFalse(graph.getNeighbors(graph.getVertices().get(1)).contains(graph.getVertices().get(0)));
+                assertFalse(graph.getNeighbors(graph.getVertices().get(1))
+                    .contains(graph.getVertices().get(0)));
         }
     }
 
@@ -236,7 +240,7 @@ class GraphTest {
     void selfLoopsAreNeighbors() {
         for (Supplier<Graph> factory : graphFactories) {
             Graph graph = factory.get();
-            Vertex retained = graph.addVertex();
+            final Vertex retained = graph.addVertex();
             Vertex removed = graph.addVertex();
             Vertex after = graph.addVertex();
             graph.addEdge(after, after);
