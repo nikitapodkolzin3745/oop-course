@@ -84,7 +84,7 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -99,27 +99,27 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Vertex.html" title="class in Unnamed Package">Vertex</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVertex()" class="member-name-link">addVertex</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Добавляет вершину.</div>
+<div class="block">Добавляет новую изолированную вершину.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#evalGraph(java.lang.String)" class="member-name-link">evalGraph</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;description)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Загружает граф из текста: число вершин, затем пары индексов рёбер.</div>
+<div class="block">Заменяет содержимое графа описанием: число вершин, затем пары индексов рёбер.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNeighbors(Vertex)" class="member-name-link">getNeighbors</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Возвращает исходящих соседей вершины.</div>
+<div class="block">Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Возвращает список вершин.</div>
+<div class="block">Возвращает неизменяемый снимок вершин в порядке их добавления.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromFile(java.nio.file.Path)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Загружает граф из текстового файла.</div>
+<div class="block">Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeEdge(Vertex,Vertex)" class="member-name-link">removeEdge</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
@@ -130,12 +130,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeVertex(Vertex)" class="member-name-link">removeVertex</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Удаляет вершину и все её рёбра.</div>
+<div class="block">Удаляет вершину и все входящие и исходящие рёбра.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Возвращает топологический порядок или сообщает о цикле.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Сортирует этот граф; эквивалентно <code>Graph.topologicalSort(this)</code>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#topologicalSort(Graph)" class="member-name-link">topologicalSort</a><wbr>(<a href="Graph.html" title="interface in Unnamed Package">Graph</a>&nbsp;graph)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Вычисляет топологический порядок вершин графа алгоритмом Кана.</div>
 </div>
 </div>
 </div>
@@ -155,17 +160,23 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addVertex()">
 <h3>addVertex</h3>
 <div class="member-signature"><span class="return-type"><a href="Vertex.html" title="class in Unnamed Package">Vertex</a></span>&nbsp;<span class="element-name">addVertex</span>()</div>
-<div class="block">Добавляет вершину.</div>
+<div class="block">Добавляет новую изолированную вершину.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>созданная вершина, которой ранее не было в графе</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="removeVertex(Vertex)">
 <h3>removeVertex</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</span></div>
-<div class="block">Удаляет вершину и все её рёбра.</div>
+<div class="block">Удаляет вершину и все входящие и исходящие рёбра.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>vertex</code> - удаляемая вершина</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если <code>vertex</code> равна <code>null</code> или не принадлежит графу</dd>
 </dl>
 </section>
 </li>
@@ -174,11 +185,13 @@ loadScripts(document, 'script');</script>
 <h3>addEdge</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
  <a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;to)</span></div>
-<div class="block">Добавляет ориентированное ребро.</div>
+<div class="block">Добавляет ориентированное ребро. Повторное добавление уже существующего ребра ничего не меняет.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>from</code> - начальная вершина</dd>
 <dd><code>to</code> - конечная вершина</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если хотя бы одна вершина равна <code>null</code> или не принадлежит графу</dd>
 </dl>
 </section>
 </li>
@@ -187,11 +200,13 @@ loadScripts(document, 'script');</script>
 <h3>removeEdge</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
  <a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;to)</span></div>
-<div class="block">Удаляет ориентированное ребро.</div>
+<div class="block">Удаляет ориентированное ребро. Если такого ребра нет, граф не меняется.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>from</code> - начальная вершина</dd>
 <dd><code>to</code> - конечная вершина</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если хотя бы одна вершина равна <code>null</code> или не принадлежит графу</dd>
 </dl>
 </section>
 </li>
@@ -199,17 +214,20 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getVertices()">
 <h3>getVertices</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
-<div class="block">Возвращает список вершин.</div>
+<div class="block">Возвращает неизменяемый снимок вершин в порядке их добавления.
+ Изменение возвращённого списка не влияет на граф.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getNeighbors(Vertex)">
 <h3>getNeighbors</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</span></div>
-<div class="block">Возвращает исходящих соседей вершины.</div>
+<div class="block">Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>vertex</code> - вершина</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если <code>vertex</code> равна <code>null</code> или не принадлежит графу</dd>
 </dl>
 </section>
 </li>
@@ -218,12 +236,14 @@ loadScripts(document, 'script');</script>
 <h3>readFromFile</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</span>
            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Загружает граф из текстового файла.</div>
+<div class="block">Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>path</code> - путь к файлу</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если файл не удалось прочитать</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - если <code>path</code> равен <code>null</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если файл содержит некорректное описание графа</dd>
 </dl>
 </section>
 </li>
@@ -231,18 +251,44 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="evalGraph(java.lang.String)">
 <h3>evalGraph</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">evalGraph</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;description)</span></div>
-<div class="block">Загружает граф из текста: число вершин, затем пары индексов рёбер.</div>
+<div class="block">Заменяет содержимое графа описанием: число вершин, затем пары индексов рёбер.
+ Некорректное описание отклоняется до изменения графа.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>description</code> - описание графа</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если описание равно <code>null</code> или имеет неверный формат</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="topologicalSort(Graph)">
+<h3>topologicalSort</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in Unnamed Package">Graph</a>&nbsp;graph)</span></div>
+<div class="block">Вычисляет топологический порядок вершин графа алгоритмом Кана.
+ Порядок среди одновременно доступных вершин не специфицирован.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>graph</code> - граф для сортировки</dd>
+<dt>Returns:</dt>
+<dd>новый список вершин в топологическом порядке; для пустого графа возвращает пустой список</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если <code>graph</code> равен <code>null</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - если граф содержит цикл</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="topologicalSort()">
 <h3>topologicalSort</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
-<div class="block">Возвращает топологический порядок или сообщает о цикле.</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
+<div class="block">Сортирует этот граф; эквивалентно <code>Graph.topologicalSort(this)</code>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>новый список вершин в топологическом порядке</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - если граф содержит цикл</dd>
+</dl>
 </section>
 </li>
 </ul>

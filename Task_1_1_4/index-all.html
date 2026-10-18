@@ -67,7 +67,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#addVertex()" class="member-name-link">addVertex()</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Добавляет вершину.</div>
+<div class="block">Добавляет новую изолированную вершину.</div>
 </dd>
 <dt><a href="AdjacencyListGraph.html" class="type-name-link" title="class in Unnamed Package">AdjacencyListGraph</a> - Class in <a href="package-summary.html">Unnamed Package</a></dt>
 <dd>
@@ -99,7 +99,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#evalGraph(java.lang.String)" class="member-name-link">evalGraph(String)</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Загружает граф из текста: число вершин, затем пары индексов рёбер.</div>
+<div class="block">Заменяет содержимое графа описанием: число вершин, затем пары индексов рёбер.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
@@ -108,13 +108,13 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#getNeighbors(Vertex)" class="member-name-link">getNeighbors(Vertex)</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Возвращает исходящих соседей вершины.</div>
+<div class="block">Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.</div>
 </dd>
 <dt><a href="AdjacencyListGraph.html#getVertices()" class="member-name-link">getVertices()</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#getVertices()" class="member-name-link">getVertices()</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Возвращает список вершин.</div>
+<div class="block">Возвращает неизменяемый снимок вершин в порядке их добавления.</div>
 </dd>
 <dt><a href="Graph.html" class="type-name-link" title="interface in Unnamed Package">Graph</a> - Interface in <a href="package-summary.html">Unnamed Package</a></dt>
 <dd>
@@ -153,7 +153,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#readFromFile(java.nio.file.Path)" class="member-name-link">readFromFile(Path)</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Загружает граф из текстового файла.</div>
+<div class="block">Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.</div>
 </dd>
 <dt><a href="AdjacencyListGraph.html#removeEdge(Vertex,Vertex)" class="member-name-link">removeEdge(Vertex, Vertex)</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -171,7 +171,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="Graph.html#removeVertex(Vertex)" class="member-name-link">removeVertex(Vertex)</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Удаляет вершину и все её рёбра.</div>
+<div class="block">Удаляет вершину и все входящие и исходящие рёбра.</div>
 </dd>
 <dt><a href="AdjacencyListGraph.html#requireVertex(Vertex)" class="member-name-link">requireVertex(Vertex)</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -187,11 +187,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="AdjacencyListGraph.html#topologicalSort()" class="member-name-link">topologicalSort()</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="Graph.html#topologicalSort()" class="member-name-link">topologicalSort()</a> - Method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
 <dd>
-<div class="block">Возвращает топологический порядок или сообщает о цикле.</div>
+<div class="block">Сортирует этот граф; эквивалентно <code>Graph.topologicalSort(this)</code>.</div>
+</dd>
+<dt><a href="Graph.html#topologicalSort(Graph)" class="member-name-link">topologicalSort(Graph)</a> - Static method in interface <a href="Graph.html" title="interface in Unnamed Package">Graph</a></dt>
+<dd>
+<div class="block">Вычисляет топологический порядок вершин графа алгоритмом Кана.</div>
 </dd>
 <dt><a href="AdjacencyListGraph.html#toString()" class="member-name-link">toString()</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -204,19 +206,17 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="Vertex.html#%3Cinit%3E()" class="member-name-link">Vertex()</a> - Constructor for class <a href="Vertex.html" title="class in Unnamed Package">Vertex</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="AdjacencyListGraph.html#vertexAdded()" class="member-name-link">vertexAdded()</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
+<dt><a href="AdjacencyListGraph.html#vertexAdded(Vertex)" class="member-name-link">vertexAdded(Vertex)</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="AdjacencyMatrixGraph.html#vertexAdded()" class="member-name-link">vertexAdded()</a> - Method in class <a href="AdjacencyMatrixGraph.html" title="class in Unnamed Package">AdjacencyMatrixGraph</a></dt>
+<dt><a href="AdjacencyMatrixGraph.html#vertexAdded(Vertex)" class="member-name-link">vertexAdded(Vertex)</a> - Method in class <a href="AdjacencyMatrixGraph.html" title="class in Unnamed Package">AdjacencyMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="IncidenceMatrixGraph.html#vertexAdded()" class="member-name-link">vertexAdded()</a> - Method in class <a href="IncidenceMatrixGraph.html" title="class in Unnamed Package">IncidenceMatrixGraph</a></dt>
+<dt><a href="IncidenceMatrixGraph.html#vertexAdded(Vertex)" class="member-name-link">vertexAdded(Vertex)</a> - Method in class <a href="IncidenceMatrixGraph.html" title="class in Unnamed Package">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="AdjacencyListGraph.html#vertexRemoved(Vertex)" class="member-name-link">vertexRemoved(Vertex)</a> - Method in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="AdjacencyMatrixGraph.html#vertexRemoved(Vertex)" class="member-name-link">vertexRemoved(Vertex)</a> - Method in class <a href="AdjacencyMatrixGraph.html" title="class in Unnamed Package">AdjacencyMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="IncidenceMatrixGraph.html#vertexRemoved(Vertex)" class="member-name-link">vertexRemoved(Vertex)</a> - Method in class <a href="IncidenceMatrixGraph.html" title="class in Unnamed Package">IncidenceMatrixGraph</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="AdjacencyListGraph.html#vertices" class="member-name-link">vertices</a> - Variable in class <a href="AdjacencyListGraph.html" title="class in Unnamed Package">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>

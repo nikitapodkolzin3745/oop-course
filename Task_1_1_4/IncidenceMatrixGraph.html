@@ -43,13 +43,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -83,21 +83,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- =========== FIELD SUMMARY =========== -->
-<li>
-<section class="field-summary" id="field-summary">
-<h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#vertices" class="member-name-link">vertices</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-</div>
-</section>
-</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -139,7 +124,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="Vertex.html" title="class in Unnamed Package">Vertex</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex()" class="member-name-link">addVertex</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Добавляет вершину.</div>
+<div class="block">Добавляет новую изолированную вершину.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#clearStorage()" class="member-name-link">clearStorage</a>()</code></div>
@@ -150,17 +135,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#evalGraph(java.lang.String)" class="member-name-link">evalGraph</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;description)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Загружает граф из текста: число вершин, затем пары индексов рёбер.</div>
+<div class="block">Заменяет содержимое графа описанием: число вершин, затем пары индексов рёбер.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(Vertex)" class="member-name-link">getNeighbors</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает исходящих соседей вершины.</div>
+<div class="block">Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список вершин.</div>
+<div class="block">Возвращает неизменяемый снимок вершин в порядке их добавления.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -175,7 +160,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.nio.file.Path)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Загружает граф из текстового файла.</div>
+<div class="block">Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(Vertex,Vertex)" class="member-name-link">removeEdge</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
@@ -190,7 +175,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(Vertex)" class="member-name-link">removeVertex</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Удаляет вершину и все её рёбра.</div>
+<div class="block">Удаляет вершину и все входящие и исходящие рёбра.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected final void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#requireVertex(Vertex)" class="member-name-link">requireVertex</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
@@ -198,46 +183,30 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#storedNeighbors(Vertex)" class="member-name-link">storedNeighbors</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает топологический порядок или сообщает о цикле.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#vertexAdded()" class="member-name-link">vertexAdded</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#vertexRemoved(Vertex)" class="member-name-link">vertexRemoved</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#vertexAdded(Vertex)" class="member-name-link">vertexAdded</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#vertexRemoved(Vertex)" class="member-name-link">vertexRemoved</a><wbr>(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-Graph">Methods inherited from interface&nbsp;<a href="Graph.html" title="interface in Unnamed Package">Graph</a></h3>
+<code><a href="Graph.html#topologicalSort()">topologicalSort</a></code></div>
 </section>
 </li>
 </ul>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
-<li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="vertices">
-<h3>vertices</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">vertices</span></div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -269,9 +238,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="vertexAdded()">
+<section class="detail" id="vertexAdded(Vertex)">
 <h3>vertexAdded</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">vertexAdded</span>()</div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">vertexAdded</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</span></div>
 </section>
 </li>
 <li>
@@ -318,10 +287,12 @@ loadScripts(document, 'script');</script>
 <h3>addVertex</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="Vertex.html" title="class in Unnamed Package">Vertex</a></span>&nbsp;<span class="element-name">addVertex</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addVertex()">Graph</a></code></span></div>
-<div class="block">Добавляет вершину.</div>
+<div class="block">Добавляет новую изолированную вершину.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#addVertex()">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
+<dt>Returns:</dt>
+<dd>созданная вершина, которой ранее не было в графе</dd>
 </dl>
 </section>
 </li>
@@ -330,7 +301,7 @@ loadScripts(document, 'script');</script>
 <h3>removeVertex</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeVertex(Vertex)">Graph</a></code></span></div>
-<div class="block">Удаляет вершину и все её рёбра.</div>
+<div class="block">Удаляет вершину и все входящие и исходящие рёбра.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#removeVertex(Vertex)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
@@ -345,7 +316,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
  <a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;to)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addEdge(Vertex,Vertex)">Graph</a></code></span></div>
-<div class="block">Добавляет ориентированное ребро.</div>
+<div class="block">Добавляет ориентированное ребро. Повторное добавление уже существующего ребра ничего не меняет.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#addEdge(Vertex,Vertex)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
@@ -361,7 +332,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;from,
  <a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;to)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(Vertex,Vertex)">Graph</a></code></span></div>
-<div class="block">Удаляет ориентированное ребро.</div>
+<div class="block">Удаляет ориентированное ребро. Если такого ребра нет, граф не меняется.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#removeEdge(Vertex,Vertex)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
@@ -376,7 +347,8 @@ loadScripts(document, 'script');</script>
 <h3>getVertices</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getVertices()">Graph</a></code></span></div>
-<div class="block">Возвращает список вершин.</div>
+<div class="block">Возвращает неизменяемый снимок вершин в порядке их добавления.
+ Изменение возвращённого списка не влияет на граф.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
@@ -388,7 +360,7 @@ loadScripts(document, 'script');</script>
 <h3>getNeighbors</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&nbsp;vertex)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getNeighbors(Vertex)">Graph</a></code></span></div>
-<div class="block">Возвращает исходящих соседей вершины.</div>
+<div class="block">Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#getNeighbors(Vertex)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
@@ -410,31 +382,19 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="topologicalSort()">
-<h3>topologicalSort</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in Unnamed Package">Vertex</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#topologicalSort()">Graph</a></code></span></div>
-<div class="block">Возвращает топологический порядок или сообщает о цикле.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="Graph.html#topologicalSort()">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="readFromFile(java.nio.file.Path)">
 <h3>readFromFile</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</span>
                         throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#readFromFile(java.nio.file.Path)">Graph</a></code></span></div>
-<div class="block">Загружает граф из текстового файла.</div>
+<div class="block">Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#readFromFile(java.nio.file.Path)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>path</code> - путь к файлу</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если файл не удалось прочитать</dd>
 </dl>
 </section>
 </li>
@@ -443,7 +403,8 @@ loadScripts(document, 'script');</script>
 <h3>evalGraph</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">evalGraph</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;description)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#evalGraph(java.lang.String)">Graph</a></code></span></div>
-<div class="block">Загружает граф из текста: число вершин, затем пары индексов рёбер.</div>
+<div class="block">Заменяет содержимое графа описанием: число вершин, затем пары индексов рёбер.
+ Некорректное описание отклоняется до изменения графа.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#evalGraph(java.lang.String)">evalGraph</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in Unnamed Package">Graph</a></code></dd>
