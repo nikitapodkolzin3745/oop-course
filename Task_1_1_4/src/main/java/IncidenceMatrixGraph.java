@@ -23,8 +23,8 @@ public class IncidenceMatrixGraph extends AbstractGraph {
     }
 
     @Override
-    protected void vertexAdded() {
-        int[][] expanded = new int[vertices.size()][edges.size()];
+    protected void vertexAdded(Vertex vertex) {
+        int[][] expanded = new int[getVertices().size()][edges.size()];
         for (int row = 0; row < matrix.length; row++) {
             System.arraycopy(matrix[row], 0, expanded[row], 0, edges.size());
         }
@@ -38,7 +38,7 @@ public class IncidenceMatrixGraph extends AbstractGraph {
     }
 
     private void rebuildMatrix(Vertex omittedVertex) {
-        int rowCount = vertices.size() - (omittedVertex == null ? 0 : 1);
+        int rowCount = getVertices().size() - (omittedVertex == null ? 0 : 1);
         matrix = new int[rowCount][edges.size()];
         for (int column = 0; column < edges.size(); column++) {
             DirectedEdge edge = edges.get(column);
@@ -98,7 +98,7 @@ public class IncidenceMatrixGraph extends AbstractGraph {
     @Override
     protected List<Vertex> storedNeighbors(Vertex vertex) {
         List<Vertex> neighbors = new ArrayList<>();
-        for (Vertex candidate : vertices) {
+        for (Vertex candidate : getVertices()) {
             if (hasStoredEdge(vertex, candidate)) {
                 neighbors.add(candidate);
             }

@@ -10,8 +10,8 @@ public class AdjacencyListGraph extends AbstractGraph {
     private final Map<Vertex, Set<Vertex>> adjacency = new LinkedHashMap<>();
 
     @Override
-    protected void vertexAdded() {
-        adjacency.put(vertices.get(vertices.size() - 1), new LinkedHashSet<>());
+    protected void vertexAdded(Vertex vertex) {
+        adjacency.put(vertex, new LinkedHashSet<>());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class AdjacencyListGraph extends AbstractGraph {
     protected List<Vertex> storedNeighbors(Vertex vertex) {
         Set<Vertex> outgoing = adjacency.get(vertex);
         List<Vertex> neighbors = new ArrayList<>();
-        for (Vertex candidate : vertices) {
+        for (Vertex candidate : getVertices()) {
             if (outgoing.contains(candidate)) {
                 neighbors.add(candidate);
             }

@@ -75,17 +75,17 @@ class GraphTest {
             graph.addEdge(a, c);
             graph.addEdge(b, c);
 
-            List<Vertex> order = graph.topologicalSort();
+            List<Vertex> order = Graph.topologicalSort(graph);
             assertEquals(4, order.size());
             assertTrue(order.indexOf(a) < order.indexOf(c));
             assertTrue(order.indexOf(b) < order.indexOf(c));
             assertTrue(order.contains(isolated));
 
             graph.addEdge(c, a);
-            assertThrows(IllegalStateException.class, graph::topologicalSort);
+            assertThrows(IllegalStateException.class, () -> Graph.topologicalSort(graph));
             graph.removeEdge(c, a);
             graph.addEdge(isolated, isolated);
-            assertThrows(IllegalStateException.class, graph::topologicalSort);
+            assertThrows(IllegalStateException.class, () -> Graph.topologicalSort(graph));
         }
     }
 
@@ -102,7 +102,7 @@ class GraphTest {
             graph.addEdge(b, d);
             graph.addEdge(c, d);
 
-            List<Vertex> order = graph.topologicalSort();
+            List<Vertex> order = Graph.topologicalSort(graph);
             assertEquals(4, order.size());
             for (Vertex source : graph.getVertices()) {
                 for (Vertex destination : graph.getNeighbors(source)) {
@@ -112,7 +112,7 @@ class GraphTest {
         }
 
         Graph empty = new AdjacencyMatrixGraph();
-        assertTrue(empty.topologicalSort().isEmpty());
+        assertTrue(Graph.topologicalSort(empty).isEmpty());
     }
 
     @Test

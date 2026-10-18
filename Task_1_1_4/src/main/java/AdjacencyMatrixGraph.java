@@ -6,8 +6,9 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
     private boolean[][] matrix = new boolean[0][0];
 
     @Override
-    protected void vertexAdded() {
-        boolean[][] expanded = new boolean[vertices.size()][vertices.size()];
+    protected void vertexAdded(Vertex vertex) {
+        int vertexCount = getVertices().size();
+        boolean[][] expanded = new boolean[vertexCount][vertexCount];
         for (int row = 0; row < matrix.length; row++) {
             System.arraycopy(matrix[row], 0, expanded[row], 0, matrix.length);
         }
@@ -55,6 +56,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
     @Override
     protected List<Vertex> storedNeighbors(Vertex vertex) {
         int row = indexOf(vertex);
+        List<Vertex> vertices = getVertices();
         List<Vertex> neighbors = new ArrayList<>();
         for (int column = 0; column < matrix.length; column++) {
             if (matrix[row][column]) {

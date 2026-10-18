@@ -2,18 +2,15 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /** Общая логика графа. Подклассы реализуют хранение рёбер. */
 abstract class AbstractGraph implements Graph {
-    protected final List<Vertex> vertices = new ArrayList<>();
+    private final List<Vertex> vertices = new ArrayList<>();
 
-    protected abstract void vertexAdded();
+    protected abstract void vertexAdded(Vertex vertex);
 
     protected abstract void vertexRemoved(Vertex vertex);
 
@@ -31,7 +28,7 @@ abstract class AbstractGraph implements Graph {
     public final Vertex addVertex() {
         Vertex vertex = new Vertex();
         vertices.add(vertex);
-        vertexAdded();
+        vertexAdded(vertex);
         return vertex;
     }
 
@@ -75,43 +72,6 @@ abstract class AbstractGraph implements Graph {
 
     protected final int indexOf(Vertex vertex) {
         return vertices.indexOf(vertex);
-    }
-
-    @Override
-    public final List<Vertex> topologicalSort() {
-        // Алгоритм Кана: сначала обрабатываем вершины с нулевой входящей степенью.
-        Map<Vertex, Integer> inDegree = new HashMap<>();
-        ArrayDeque<Vertex> ready = new ArrayDeque<>();
-        for (Vertex vertex : vertices) {
-            inDegree.put(vertex, 0);
-        }
-        for (Vertex source : vertices) {
-            for (Vertex neighbor : storedNeighbors(source)) {
-                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
-            }
-        }
-        for (Vertex vertex : vertices) {
-            if (inDegree.get(vertex) == 0) {
-                ready.addLast(vertex);
-            }
-        }
-
-        List<Vertex> order = new ArrayList<>(vertices.size());
-        while (!ready.isEmpty()) {
-            Vertex vertex = ready.removeFirst();
-            order.add(vertex);
-            for (Vertex neighbor : storedNeighbors(vertex)) {
-                int degree = inDegree.get(neighbor) - 1;
-                inDegree.put(neighbor, degree);
-                if (degree == 0) {
-                    ready.addLast(neighbor);
-                }
-            }
-        }
-        if (order.size() != vertices.size()) {
-            throw new IllegalStateException("Topological sort is undefined for a cyclic graph");
-        }
-        return order;
     }
 
     @Override
