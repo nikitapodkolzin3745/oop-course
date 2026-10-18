@@ -17,15 +17,18 @@ public interface Graph {
     /**
      * Удаляет вершину и все входящие и исходящие рёбра.
      * @param vertex удаляемая вершина
-     * @throws IllegalArgumentException если {@code vertex} равна {@code null} или не принадлежит графу
+     * @throws IllegalArgumentException если {@code vertex} равна {@code null} или
+     * не принадлежит графу
      */
     void removeVertex(Vertex vertex);
 
     /**
-     * Добавляет ориентированное ребро. Повторное добавление уже существующего ребра ничего не меняет.
+     * Добавляет ориентированное ребро. Повторное добавление уже существующего ребра
+     * ничего не меняет.
      * @param from начальная вершина
      * @param to конечная вершина
-     * @throws IllegalArgumentException если хотя бы одна вершина равна {@code null} или не принадлежит графу
+     * @throws IllegalArgumentException если хотя бы одна вершина равна {@code null} или
+     * не принадлежит графу
      */
     void addEdge(Vertex from, Vertex to);
 
@@ -33,7 +36,8 @@ public interface Graph {
      * Удаляет ориентированное ребро. Если такого ребра нет, граф не меняется.
      * @param from начальная вершина
      * @param to конечная вершина
-     * @throws IllegalArgumentException если хотя бы одна вершина равна {@code null} или не принадлежит графу
+     * @throws IllegalArgumentException если хотя бы одна вершина равна {@code null} или
+     * не принадлежит графу
      */
     void removeEdge(Vertex from, Vertex to);
 
@@ -44,9 +48,11 @@ public interface Graph {
     List<Vertex> getVertices();
 
     /**
-     * Возвращает неизменяемый снимок исходящих соседей вершины в порядке добавления вершин.
+     * Возвращает неизменяемый снимок исходящих соседей вершины
+     * в порядке добавления вершин.
      * @param vertex вершина
-     * @throws IllegalArgumentException если {@code vertex} равна {@code null} или не принадлежит графу
+     * @throws IllegalArgumentException если {@code vertex} равна {@code null} или
+     * не принадлежит графу
      */
     List<Vertex> getNeighbors(Vertex vertex);
 
@@ -54,8 +60,8 @@ public interface Graph {
      * Заменяет содержимое графа графом, описанным в текстовом файле в кодировке UTF-8.
      * @param path путь к файлу
      * @throws IOException если файл не удалось прочитать
-    * @throws NullPointerException если {@code path} равен {@code null}
-    * @throws IllegalArgumentException если файл содержит некорректное описание графа
+     * @throws NullPointerException если {@code path} равен {@code null}
+     * @throws IllegalArgumentException если файл содержит некорректное описание графа
      */
     void readFromFile(Path path) throws IOException;
 
@@ -71,7 +77,8 @@ public interface Graph {
      * Вычисляет топологический порядок вершин графа алгоритмом Кана.
      * Порядок среди одновременно доступных вершин не специфицирован.
      * @param graph граф для сортировки
-     * @return новый список вершин в топологическом порядке; для пустого графа возвращает пустой список
+     * @return новый список вершин в топологическом порядке; для пустого графа
+     * возвращает пустой список
      * @throws IllegalArgumentException если {@code graph} равен {@code null}
      * @throws IllegalStateException если граф содержит цикл
      */
@@ -90,7 +97,8 @@ public interface Graph {
             for (Vertex neighbor : graph.getNeighbors(source)) {
                 Integer degree = inDegree.get(neighbor);
                 if (degree == null) {
-                    throw new IllegalArgumentException("Graph contains an edge to a non-member vertex");
+                    throw new IllegalArgumentException(
+                            "Graph contains an edge to a non-member vertex");
                 }
                 inDegree.put(neighbor, degree + 1);
             }

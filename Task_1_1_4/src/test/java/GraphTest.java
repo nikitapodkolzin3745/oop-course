@@ -187,7 +187,7 @@ class GraphTest {
             assertThrows(IllegalArgumentException.class, () -> graph.removeVertex(foreign));
             assertThrows(IllegalArgumentException.class, () -> graph.addEdge(null, existing));
             assertThrows(UnsupportedOperationException.class, () -> graph.getVertices().clear());
-                assertThrows(UnsupportedOperationException.class,
+            assertThrows(UnsupportedOperationException.class,
                     () -> graph.getNeighbors(existing).clear());
 
             assertThrows(IllegalArgumentException.class, () -> graph.evalGraph(""));
@@ -215,9 +215,9 @@ class GraphTest {
 
             assertEquals(before, graph.toString());
             assertEquals(verticesBefore, graph.getVertices());
-                assertEquals(Arrays.asList(verticesBefore.get(1)),
+            assertEquals(Arrays.asList(verticesBefore.get(1)),
                     graph.getNeighbors(verticesBefore.get(0)));
-                assertEquals(Arrays.asList(verticesBefore.get(2)),
+            assertEquals(Arrays.asList(verticesBefore.get(2)),
                     graph.getNeighbors(verticesBefore.get(1)));
         }
     }
@@ -231,7 +231,7 @@ class GraphTest {
             assertEquals("Graph{vertices=3, edges=[0->1, 2->2]}", graph.toString());
             assertEquals(Arrays.asList(graph.getVertices().get(1)),
                     graph.getNeighbors(graph.getVertices().get(0)));
-                assertFalse(graph.getNeighbors(graph.getVertices().get(1))
+            assertFalse(graph.getNeighbors(graph.getVertices().get(1))
                     .contains(graph.getVertices().get(0)));
         }
     }
