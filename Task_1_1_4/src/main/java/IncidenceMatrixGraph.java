@@ -24,39 +24,37 @@ public class IncidenceMatrixGraph extends AbstractGraph {
 
     @Override
     protected void vertexAdded(Vertex vertex) {
-        int[][] expanded = new int[getVertices().size()][edges.size()];
-        for (int row = 0; row < matrix.length; row++) {
-            System.arraycopy(matrix[row], 0, expanded[row], 0, edges.size());
+        int vertexCount = getVertices().size();
+        if (vertexCount > matrix.length) {
+            int columnCapacity = matrix.length == 0 ? 0 : matrix[0].length;
+            resizeMatrix(nextCapacity(matrix.length, vertexCount), columnCapacity,
+                    vertexCount - 1, edges.size());
         }
-        matrix = expanded;
     }
 
     @Override
     protected void vertexRemoved(Vertex vertex) {
-        edges.removeIf(edge -> edge.from == vertex || edge.to == vertex);
-        rebuildMatrix(vertex);
-    }
-
-    private void rebuildMatrix(Vertex omittedVertex) {
-        int rowCount = getVertices().size() - (omittedVertex == null ? 0 : 1);
-        matrix = new int[rowCount][edges.size()];
-        for (int column = 0; column < edges.size(); column++) {
+        int vertexCount = getVertices().size();
+        int column = 0;
+        while (column < edges.size()) {
             DirectedEdge edge = edges.get(column);
-            int from = adjustedIndex(edge.from, omittedVertex);
-            int to = adjustedIndex(edge.to, omittedVertex);
-            if (from == to) {
-                // Значение 2 обозначает ориентированную петлю в этом представлении.
-                matrix[from][column] = 2;
+            if (edge.from == vertex || edge.to == vertex) {
+                removeColumn(column, vertexCount);
             } else {
-                matrix[from][column] = -1;
-                matrix[to][column] = 1;
+                column++;
             }
         }
-    }
 
-    private int adjustedIndex(Vertex vertex, Vertex omittedVertex) {
-        int index = indexOf(vertex);
-        return omittedVertex != null && index > indexOf(omittedVertex) ? index - 1 : index;
+        for (int row = 0; row < vertexCount - 1; row++) {
+            if (row >= indexOf(vertex)) {
+                System.arraycopy(matrix[row + 1], 0, matrix[row], 0, edges.size());
+            }
+        }
+        int newVertexCount = vertexCount - 1;
+        for (int columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
+            matrix[newVertexCount][columnIndex] = 0;
+        }
+        shrinkIfSparse(newVertexCount, edges.size());
     }
 
     @Override
@@ -68,15 +66,21 @@ public class IncidenceMatrixGraph extends AbstractGraph {
     @Override
     protected void addStoredEdge(Vertex from, Vertex to) {
         if (!hasStoredEdge(from, to)) {
+            ensureCapacity(getVertices().size(), edges.size() + 1);
             edges.add(new DirectedEdge(from, to));
-            rebuildMatrix(null);
+            writeEdgeColumn(edges.size() - 1, from, to);
         }
     }
 
     @Override
     protected void removeStoredEdge(Vertex from, Vertex to) {
-        if (edges.removeIf(edge -> edge.from == from && edge.to == to)) {
-            rebuildMatrix(null);
+        for (int column = 0; column < edges.size(); column++) {
+            DirectedEdge edge = edges.get(column);
+            if (edge.from == from && edge.to == to) {
+                removeColumn(column, getVertices().size());
+                shrinkIfSparse(getVertices().size(), edges.size());
+                return;
+            }
         }
     }
 
@@ -104,6 +108,66 @@ public class IncidenceMatrixGraph extends AbstractGraph {
             }
         }
         return neighbors;
+    }
+
+    private void writeEdgeColumn(int column, Vertex from, Vertex to) {
+        int fromIndex = indexOf(from);
+        int toIndex = indexOf(to);
+        if (fromIndex == toIndex) {
+            // Значение 2 обозначает ориентированную петлю в этом представлении.
+            matrix[fromIndex][column] = 2;
+        } else {
+            matrix[fromIndex][column] = -1;
+            matrix[toIndex][column] = 1;
+        }
+    }
+
+    private void removeColumn(int column, int vertexCount) {
+        edges.remove(column);
+        for (int row = 0; row < vertexCount; row++) {
+            for (int currentColumn = column; currentColumn < edges.size(); currentColumn++) {
+                matrix[row][currentColumn] = matrix[row][currentColumn + 1];
+            }
+            matrix[row][edges.size()] = 0;
+        }
+    }
+
+    private void ensureCapacity(int requiredRows, int requiredColumns) {
+        int rowCapacity = matrix.length;
+        int columnCapacity = matrix[0].length;
+        if (requiredRows > rowCapacity || requiredColumns > columnCapacity) {
+            int newRowCapacity = requiredRows > rowCapacity
+                    ? nextCapacity(rowCapacity, requiredRows) : rowCapacity;
+            int newColumnCapacity = requiredColumns > columnCapacity
+                    ? nextCapacity(columnCapacity, requiredColumns) : columnCapacity;
+            resizeMatrix(newRowCapacity, newColumnCapacity,
+                    getVertices().size(), edges.size());
+        }
+    }
+
+    private void resizeMatrix(int rowCapacity, int columnCapacity,
+            int rowCount, int columnCount) {
+        int[][] resized = new int[rowCapacity][columnCapacity];
+        for (int row = 0; row < rowCount; row++) {
+            System.arraycopy(matrix[row], 0, resized[row], 0, columnCount);
+        }
+        matrix = resized;
+    }
+
+    private void shrinkIfSparse(int rowCount, int columnCount) {
+        int rowCapacity = matrix.length;
+        int columnCapacity = matrix[0].length;
+        int newRowCapacity = rowCapacity > 0 && rowCount <= rowCapacity / 4
+                ? Math.max(rowCount, rowCapacity / 2) : rowCapacity;
+        int newColumnCapacity = columnCapacity > 0 && columnCount <= columnCapacity / 4
+                ? Math.max(columnCount, columnCapacity / 2) : columnCapacity;
+        if (newRowCapacity != rowCapacity || newColumnCapacity != columnCapacity) {
+            resizeMatrix(newRowCapacity, newColumnCapacity, rowCount, columnCount);
+        }
+    }
+
+    private static int nextCapacity(int currentCapacity, int requiredCapacity) {
+        return Math.max(requiredCapacity, currentCapacity == 0 ? 1 : currentCapacity * 2);
     }
 
     private static final class DirectedEdge {

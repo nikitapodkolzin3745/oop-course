@@ -8,29 +8,35 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
     @Override
     protected void vertexAdded(Vertex vertex) {
         int vertexCount = getVertices().size();
-        boolean[][] expanded = new boolean[vertexCount][vertexCount];
-        for (int row = 0; row < matrix.length; row++) {
-            System.arraycopy(matrix[row], 0, expanded[row], 0, matrix.length);
+        if (vertexCount > matrix.length) {
+            int capacity = nextCapacity(matrix.length, vertexCount);
+            boolean[][] expanded = new boolean[capacity][capacity];
+            for (int row = 0; row < vertexCount - 1; row++) {
+                System.arraycopy(matrix[row], 0, expanded[row], 0, vertexCount - 1);
+            }
+            matrix = expanded;
         }
-        matrix = expanded;
     }
 
     @Override
     protected void vertexRemoved(Vertex vertex) {
         int removed = indexOf(vertex);
-        boolean[][] reduced = new boolean[matrix.length - 1][matrix.length - 1];
-        for (int oldRow = 0, newRow = 0; oldRow < matrix.length; oldRow++) {
-            if (oldRow == removed) {
-                continue;
+        int vertexCount = getVertices().size();
+        for (int row = 0; row < vertexCount; row++) {
+            for (int column = removed; column < vertexCount - 1; column++) {
+                matrix[row][column] = matrix[row][column + 1];
             }
-            for (int oldColumn = 0, newColumn = 0; oldColumn < matrix.length; oldColumn++) {
-                if (oldColumn != removed) {
-                    reduced[newRow][newColumn++] = matrix[oldRow][oldColumn];
-                }
-            }
-            newRow++;
         }
-        matrix = reduced;
+        for (int row = removed; row < vertexCount - 1; row++) {
+            System.arraycopy(matrix[row + 1], 0, matrix[row], 0, vertexCount - 1);
+        }
+
+        int newVertexCount = vertexCount - 1;
+        for (int index = 0; index < vertexCount; index++) {
+            matrix[newVertexCount][index] = false;
+            matrix[index][newVertexCount] = false;
+        }
+        shrinkIfSparse(newVertexCount);
     }
 
     @Override
@@ -58,11 +64,26 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
         int row = indexOf(vertex);
         List<Vertex> vertices = getVertices();
         List<Vertex> neighbors = new ArrayList<>();
-        for (int column = 0; column < matrix.length; column++) {
+        for (int column = 0; column < vertices.size(); column++) {
             if (matrix[row][column]) {
                 neighbors.add(vertices.get(column));
             }
         }
         return neighbors;
+    }
+
+    private static int nextCapacity(int currentCapacity, int requiredCapacity) {
+        return Math.max(requiredCapacity, currentCapacity == 0 ? 1 : currentCapacity * 2);
+    }
+
+    private void shrinkIfSparse(int vertexCount) {
+        if (matrix.length > 0 && vertexCount <= matrix.length / 4) {
+            int capacity = Math.max(vertexCount, matrix.length / 2);
+            boolean[][] reduced = new boolean[capacity][capacity];
+            for (int row = 0; row < vertexCount; row++) {
+                System.arraycopy(matrix[row], 0, reduced[row], 0, vertexCount);
+            }
+            matrix = reduced;
+        }
     }
 }
