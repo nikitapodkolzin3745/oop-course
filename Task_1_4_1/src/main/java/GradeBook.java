@@ -103,11 +103,7 @@ public class GradeBook {
                 .average();
     }
 
-    /**
-     * Проверяет возможность перевода с платного обучения на бюджет.
-     * @return {@code true}, если за два последних семестра с экзаменами нет троек
-     * и нет неудовлетворительных недифференцированных зачетов
-     */
+    /** Проверяет условия перевода на бюджет. */
     public boolean canTransferToBudget() {
         Set<Integer> recentExamSemesters = assessments.values().stream()
                 .filter(assessment -> assessment.type() == AssessmentType.EXAM)
@@ -122,15 +118,13 @@ public class GradeBook {
                 .filter(assessment -> recentExamSemesters.contains(assessment.semester()))
                 .anyMatch(assessment -> assessment.grade() == Grade.SATISFACTORY);
         boolean hasFailedPassCredit = assessments.values().stream()
-                .anyMatch(assessment -> assessment.type() == AssessmentType.NON_DIFFERENTIATED_CREDIT
+            .anyMatch(assessment -> assessment.type()
+                == AssessmentType.NON_DIFFERENTIATED_CREDIT
                         && assessment.grade() == Grade.FAIL);
         return !hasRecentSatisfactoryExam && !hasFailedPassCredit;
     }
 
-    /**
-     * Прогнозирует возможность получения диплома с отличием на текущем этапе обучения.
-     * @return {@code true}, если текущие оценки не исключают диплом с отличием и достижимы 75% пятерок
-     */
+    /** Прогнозирует возможность получения диплома с отличием. */
     public boolean canReceiveRedDiploma() {
         boolean hasDisqualifyingGrade = assessments.values().stream()
                 .anyMatch(assessment -> assessment.grade() == Grade.SATISFACTORY
@@ -151,11 +145,7 @@ public class GradeBook {
         return excellentCount + plannedGradedAssessments - gradedCount >= requiredExcellentCount;
     }
 
-    /**
-     * Фиксирует оценку за квалификационную работу; {@code null} означает, что защита еще не состоялась.
-     * @param grade оценка или {@code null} до защиты
-     * @throws IllegalArgumentException если передана нечисловая оценка
-     */
+    /** Записывает оценку за квалификационную работу; {@code null} — до защиты. */
     public void setQualificationWorkGrade(Grade grade) {
         if (grade != null && grade.numericValue == null) {
             throw new IllegalArgumentException("За квалификационную работу нужна числовая оценка");
@@ -163,11 +153,7 @@ public class GradeBook {
         qualificationWorkGrade = grade;
     }
 
-    /**
-     * Проверяет право на повышенную стипендию в последнем указанном семестре.
-     * @return {@code true}, если в последнем семестре есть оценки и все они отличные,
-     * а все недифференцированные зачеты сданы
-     */
+    /** Проверяет право на повышенную стипендию в последнем семестре. */
     public boolean canReceiveIncreasedScholarship() {
         return assessments.values().stream()
                 .mapToInt(Assessment::semester)
@@ -182,10 +168,11 @@ public class GradeBook {
                 .toList();
         boolean hasNumericGrade = semesterAssessments.stream()
                 .anyMatch(assessment -> assessment.grade().numericValue != null);
-        boolean allResultsSatisfactory = semesterAssessments.stream()
-                .allMatch(assessment -> assessment.type() == AssessmentType.NON_DIFFERENTIATED_CREDIT
+        boolean allResultsExcellent = semesterAssessments.stream()
+            .allMatch(assessment -> assessment.type()
+                == AssessmentType.NON_DIFFERENTIATED_CREDIT
                         ? assessment.grade() == Grade.PASS
                         : assessment.grade() == Grade.EXCELLENT);
-        return hasNumericGrade && allResultsSatisfactory;
+        return hasNumericGrade && allResultsExcellent;
     }
 }

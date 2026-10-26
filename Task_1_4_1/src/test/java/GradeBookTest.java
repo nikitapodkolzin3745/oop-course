@@ -50,7 +50,8 @@ class GradeBookTest {
     @Test
     void permitsBudgetTransferUnlessRecentExamOrPassCreditBlocksIt() {
         GradeBook book = new GradeBook(8);
-        book.addAssessment("Old exam", 1, GradeBook.AssessmentType.EXAM, GradeBook.Grade.SATISFACTORY);
+        book.addAssessment("Old exam", 1, GradeBook.AssessmentType.EXAM,
+                GradeBook.Grade.SATISFACTORY);
         book.addAssessment("Exam 3", 3, GradeBook.AssessmentType.EXAM, GradeBook.Grade.GOOD);
         book.addAssessment("Exam 4", 4, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
         book.addAssessment("Differentiated", 4, GradeBook.AssessmentType.DIFFERENTIATED_CREDIT,
@@ -59,7 +60,8 @@ class GradeBookTest {
                 GradeBook.Grade.PASS);
         assertTrue(book.canTransferToBudget());
 
-        book.addAssessment("Recent exam", 3, GradeBook.AssessmentType.EXAM, GradeBook.Grade.SATISFACTORY);
+        book.addAssessment("Recent exam", 3, GradeBook.AssessmentType.EXAM,
+                GradeBook.Grade.SATISFACTORY);
         assertFalse(book.canTransferToBudget());
         book.addAssessment("Recent exam", 3, GradeBook.AssessmentType.EXAM, GradeBook.Grade.GOOD);
         book.addAssessment("Failed credit", 2, GradeBook.AssessmentType.NON_DIFFERENTIATED_CREDIT,
@@ -73,9 +75,11 @@ class GradeBookTest {
         assertTrue(book.canReceiveRedDiploma());
         book.addAssessment("A", 1, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
         book.addAssessment("B", 2, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
-        book.addAssessment("C", 3, GradeBook.AssessmentType.DIFFERENTIATED_CREDIT, GradeBook.Grade.GOOD);
+        book.addAssessment("C", 3, GradeBook.AssessmentType.DIFFERENTIATED_CREDIT,
+                GradeBook.Grade.GOOD);
         assertTrue(book.canReceiveRedDiploma());
-        book.addAssessment("D", 4, GradeBook.AssessmentType.EXAM, GradeBook.Grade.GOOD);
+        book.addAssessment("D", 4, GradeBook.AssessmentType.EXAM,
+                GradeBook.Grade.GOOD);
         assertFalse(book.canReceiveRedDiploma());
         book.addAssessment("D", 4, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
         book.setQualificationWorkGrade(GradeBook.Grade.GOOD);
