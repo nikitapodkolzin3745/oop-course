@@ -59,6 +59,7 @@ loadScripts(document, 'script');</script>
 <li><a href="#constructor-detail" tabindex="0">Constructor Details</a>
 <ol class="toc-list">
 <li><a href="#%3Cinit%3E(int)" tabindex="0">GradeBook(int)</a></li>
+<li><a href="#%3Cinit%3E(int,int)" tabindex="0">GradeBook(int, int)</a></li>
 </ol>
 </li>
 <li><a href="#method-detail" tabindex="0">Method Details</a>
@@ -67,7 +68,6 @@ loadScripts(document, 'script');</script>
 <li><a href="#getAverageGrade()" tabindex="0">getAverageGrade()</a></li>
 <li><a href="#canTransferToBudget()" tabindex="0">canTransferToBudget()</a></li>
 <li><a href="#canReceiveRedDiploma()" tabindex="0">canReceiveRedDiploma()</a></li>
-<li><a href="#setQualificationWorkGrade(GradeBook.Grade)" tabindex="0">setQualificationWorkGrade(GradeBook.Grade)</a></li>
 <li><a href="#canReceiveIncreasedScholarship()" tabindex="0">canReceiveIncreasedScholarship()</a></li>
 </ol>
 </li>
@@ -125,6 +125,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Создает зачетную книжку с известным числом оценок, включаемых в приложение к диплому.</div>
 </div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">GradeBook</a><wbr>(int&nbsp;plannedGradedAssessments,
+ int&nbsp;plannedSemesters)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Создает зачетную книжку с планом оценок и продолжительностью обучения.</div>
+</div>
 </div>
 </section>
 </li>
@@ -167,11 +172,6 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает среднее арифметическое всех актуальных числовых оценок.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setQualificationWorkGrade(GradeBook.Grade)" class="member-name-link">setQualificationWorkGrade</a><wbr>(<a href="GradeBook.Grade.html" title="enum class in Unnamed Package">GradeBook.Grade</a>&nbsp;grade)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Записывает оценку за квалификационную работу; <code>null</code> — до защиты.</div>
-</div>
 </div>
 </div>
 </div>
@@ -200,6 +200,23 @@ loadScripts(document, 'script');</script>
 <dd><code>plannedGradedAssessments</code> - плановое число экзаменов и дифференцированных зачетов</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если число отрицательное</dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(int,int)">
+<h3>GradeBook</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GradeBook</span><wbr><span class="parameters">(int&nbsp;plannedGradedAssessments,
+ int&nbsp;plannedSemesters)</span></div>
+<div class="block">Создает зачетную книжку с планом оценок и продолжительностью обучения.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>plannedGradedAssessments</code> - плановое число числовых оценок в приложении к диплому</dd>
+<dd><code>plannedSemesters</code> - число семестров по учебному плану</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если хотя бы один параметр отрицательный или равен нулю</dd>
 </dl>
 </div>
 </section>
@@ -262,15 +279,6 @@ loadScripts(document, 'script');</script>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canReceiveRedDiploma</span>()</div>
 <div class="block">Прогнозирует возможность получения диплома с отличием.</div>
-</div>
-</section>
-</li>
-<li>
-<section class="detail" id="setQualificationWorkGrade(GradeBook.Grade)">
-<h3>setQualificationWorkGrade</h3>
-<div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setQualificationWorkGrade</span><wbr><span class="parameters">(<a href="GradeBook.Grade.html" title="enum class in Unnamed Package">GradeBook.Grade</a>&nbsp;grade)</span></div>
-<div class="block">Записывает оценку за квалификационную работу; <code>null</code> — до защиты.</div>
 </div>
 </section>
 </li>
