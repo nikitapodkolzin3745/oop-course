@@ -1,8 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.OptionalDouble;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,12 +11,16 @@ class GradeBookTest {
     @Test
     void validatesPlanAndAssessmentInputs() {
         assertThrows(IllegalArgumentException.class, () -> new GradeBook(-1));
+                assertThrows(IllegalArgumentException.class, () -> new GradeBook(1, 0));
         GradeBook book = new GradeBook(1);
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment(null, 1,
                 GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT));
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment("  ", 1,
                 GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT));
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment("Math", 0,
+                GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT));
+        GradeBook fourSemesterPlan = new GradeBook(2, 4);
+        assertThrows(IllegalArgumentException.class, () -> fourSemesterPlan.addAssessment("Math", 5,
                 GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT));
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment("Math", 1,
                 null, GradeBook.Grade.EXCELLENT));
@@ -29,6 +30,9 @@ class GradeBookTest {
                 GradeBook.AssessmentType.EXAM, GradeBook.Grade.PASS));
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment("Math", 1,
                 GradeBook.AssessmentType.NON_DIFFERENTIATED_CREDIT, GradeBook.Grade.GOOD));
+        assertTrue(GradeBook.Grade.EXCELLENT.hasNumericRepresentation());
+        assertFalse(GradeBook.Grade.PASS.hasNumericRepresentation());
+        assertFalse(GradeBook.Grade.FAIL.hasNumericRepresentation());
         book.addAssessment("Math", 1, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
         assertThrows(IllegalArgumentException.class, () -> book.addAssessment("Physics", 1,
                 GradeBook.AssessmentType.EXAM, GradeBook.Grade.GOOD));
@@ -82,14 +86,15 @@ class GradeBookTest {
                 GradeBook.Grade.GOOD);
         assertFalse(book.canReceiveRedDiploma());
         book.addAssessment("D", 4, GradeBook.AssessmentType.EXAM, GradeBook.Grade.EXCELLENT);
-        book.setQualificationWorkGrade(GradeBook.Grade.GOOD);
+        book.addAssessment("ВКР до пересдачи", 5, GradeBook.AssessmentType.QUALIFICATION_WORK,
+                GradeBook.Grade.GOOD);
         assertFalse(book.canReceiveRedDiploma());
-        book.setQualificationWorkGrade(GradeBook.Grade.EXCELLENT);
+        book.addAssessment("ВКР после пересдачи", 5, GradeBook.AssessmentType.QUALIFICATION_WORK,
+                GradeBook.Grade.EXCELLENT);
         assertTrue(book.canReceiveRedDiploma());
-        assertThrows(IllegalArgumentException.class,
-                () -> book.setQualificationWorkGrade(GradeBook.Grade.PASS));
-        book.setQualificationWorkGrade(null);
-        assertTrue(book.canReceiveRedDiploma());
+        assertThrows(IllegalArgumentException.class, () -> book.addAssessment("ВКР", 5,
+                GradeBook.AssessmentType.QUALIFICATION_WORK, GradeBook.Grade.PASS));
+        assertEquals(4.75, book.getAverageGrade().orElseThrow());
 
         book.addAssessment("E", 5, GradeBook.AssessmentType.DIFFERENTIATED_CREDIT,
                 GradeBook.Grade.SATISFACTORY);
@@ -127,5 +132,10 @@ class GradeBookTest {
         book.addAssessment("New term credit", 2, GradeBook.AssessmentType.NON_DIFFERENTIATED_CREDIT,
                 GradeBook.Grade.FAIL);
         assertFalse(book.canReceiveIncreasedScholarship());
+        book.addAssessment("New term credit", 2, GradeBook.AssessmentType.NON_DIFFERENTIATED_CREDIT,
+                GradeBook.Grade.PASS);
+        book.addAssessment("ВКР", 12, GradeBook.AssessmentType.QUALIFICATION_WORK,
+                GradeBook.Grade.EXCELLENT);
+        assertTrue(book.canReceiveIncreasedScholarship());
     }
 }

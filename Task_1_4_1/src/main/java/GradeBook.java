@@ -11,22 +11,30 @@ public class GradeBook {
     public enum AssessmentType {
         EXAM,
         DIFFERENTIATED_CREDIT,
-        NON_DIFFERENTIATED_CREDIT
+        NON_DIFFERENTIATED_CREDIT,
+        QUALIFICATION_WORK
     }
 
     /** Возможная оценка за экзамен или зачет. */
     public enum Grade {
-        EXCELLENT(5),
-        GOOD(4),
-        SATISFACTORY(3),
-        UNSATISFACTORY(2),
-        PASS(null),
-        FAIL(null);
+        EXCELLENT(5, true),
+        GOOD(4, true),
+        SATISFACTORY(3, true),
+        UNSATISFACTORY(2, true),
+        PASS(0, false),
+        FAIL(0, false);
 
-        private final Integer numericValue;
+        private final int numericValue;
+        private final boolean hasNumericRepresentation;
 
-        Grade(Integer numericValue) {
+        Grade(int numericValue, boolean hasNumericRepresentation) {
             this.numericValue = numericValue;
+            this.hasNumericRepresentation = hasNumericRepresentation;
+        }
+
+        /** Возвращает, имеет ли оценка числовое представление. */
+        public boolean hasNumericRepresentation() {
+            return hasNumericRepresentation;
         }
     }
 
@@ -37,8 +45,8 @@ public class GradeBook {
     }
 
     private final int plannedGradedAssessments;
+    private final int plannedSemesters;
     private final Map<AssessmentKey, Assessment> assessments = new HashMap<>();
-    private Grade qualificationWorkGrade;
 
     /**
      * Создает зачетную книжку с известным числом оценок, включаемых в приложение к диплому.
@@ -46,10 +54,24 @@ public class GradeBook {
      * @throws IllegalArgumentException если число отрицательное
      */
     public GradeBook(int plannedGradedAssessments) {
+        this(plannedGradedAssessments, 12);
+    }
+
+    /**
+     * Создает зачетную книжку с планом оценок и продолжительностью обучения.
+     * @param plannedGradedAssessments плановое число числовых оценок в приложении к диплому
+     * @param plannedSemesters число семестров по учебному плану
+     * @throws IllegalArgumentException если хотя бы один параметр отрицательный или равен нулю
+     */
+    public GradeBook(int plannedGradedAssessments, int plannedSemesters) {
         if (plannedGradedAssessments < 0) {
             throw new IllegalArgumentException("Плановое число оценок не может быть отрицательным");
         }
+        if (plannedSemesters < 1) {
+            throw new IllegalArgumentException("Число семестров должно быть положительным");
+        }
         this.plannedGradedAssessments = plannedGradedAssessments;
+        this.plannedSemesters = plannedSemesters;
     }
 
     /**
@@ -65,15 +87,15 @@ public class GradeBook {
         if (subject == null || subject.isBlank()) {
             throw new IllegalArgumentException("Название дисциплины не должно быть пустым");
         }
-        if (semester < 1) {
-            throw new IllegalArgumentException("Номер семестра должен быть положительным");
+        if (semester < 1 || semester > plannedSemesters) {
+            throw new IllegalArgumentException("Номер семестра вне учебного плана");
         }
         if (type == null || grade == null) {
             throw new IllegalArgumentException("Вид аттестации и оценка обязательны");
         }
         boolean correctGradeType = type == AssessmentType.NON_DIFFERENTIATED_CREDIT
-                ? grade == Grade.PASS || grade == Grade.FAIL
-                : grade.numericValue != null;
+            ? !grade.hasNumericRepresentation()
+            : grade.hasNumericRepresentation();
         if (!correctGradeType) {
             throw new IllegalArgumentException("Оценка не соответствует виду аттестации");
         }
@@ -81,14 +103,21 @@ public class GradeBook {
         AssessmentKey key = new AssessmentKey(subject.trim(), type);
         Assessment previous = assessments.get(key);
         long gradedCount = assessments.values().stream()
-                .filter(assessment -> assessment.grade().numericValue != null)
-                .count();
-        boolean addsGradedResult = grade.numericValue != null
-                && (previous == null || previous.grade().numericValue == null);
+            .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
+            .map(Assessment::grade)
+            .filter(Grade::hasNumericRepresentation)
+            .count();
+        boolean addsGradedResult = type != AssessmentType.QUALIFICATION_WORK
+            && grade.hasNumericRepresentation()
+            && (previous == null || !previous.grade().hasNumericRepresentation());
         if (addsGradedResult && gradedCount >= plannedGradedAssessments) {
             throw new IllegalArgumentException("Число оценок превышает план учебного плана");
         }
         assessments.put(key, new Assessment(semester, type, grade));
+        if (type == AssessmentType.QUALIFICATION_WORK) {
+            assessments.keySet().removeIf(candidate -> candidate.type() == AssessmentType.QUALIFICATION_WORK
+                && !candidate.equals(key));
+        }
     }
 
     /**
@@ -97,10 +126,11 @@ public class GradeBook {
      */
     public OptionalDouble getAverageGrade() {
         return assessments.values().stream()
-                .map(Assessment::grade)
-                .filter(grade -> grade.numericValue != null)
-                .mapToInt(grade -> grade.numericValue)
-                .average();
+            .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
+            .map(Assessment::grade)
+            .filter(Grade::hasNumericRepresentation)
+            .mapToInt(grade -> grade.numericValue)
+            .average();
     }
 
     /** Проверяет условия перевода на бюджет. */
@@ -120,7 +150,7 @@ public class GradeBook {
         boolean hasFailedPassCredit = assessments.values().stream()
             .anyMatch(assessment -> assessment.type()
                 == AssessmentType.NON_DIFFERENTIATED_CREDIT
-                        && assessment.grade() == Grade.FAIL);
+                    && assessment.grade() == Grade.FAIL);
         return !hasRecentSatisfactoryExam && !hasFailedPassCredit;
     }
 
@@ -128,34 +158,32 @@ public class GradeBook {
     public boolean canReceiveRedDiploma() {
         boolean hasDisqualifyingGrade = assessments.values().stream()
                 .anyMatch(assessment -> assessment.grade() == Grade.SATISFACTORY
-                || assessment.grade() == Grade.UNSATISFACTORY
-                        || assessment.grade() == Grade.FAIL);
-        if (hasDisqualifyingGrade
-                || (qualificationWorkGrade != null && qualificationWorkGrade != Grade.EXCELLENT)) {
+                    || assessment.grade() == Grade.UNSATISFACTORY
+                    || assessment.grade() == Grade.FAIL);
+        boolean qualificationWorkIsNotExcellent = assessments.values().stream()
+                .filter(assessment -> assessment.type() == AssessmentType.QUALIFICATION_WORK)
+                .anyMatch(assessment -> assessment.grade() != Grade.EXCELLENT);
+        if (hasDisqualifyingGrade || qualificationWorkIsNotExcellent) {
             return false;
         }
 
         long excellentCount = assessments.values().stream()
-                .filter(assessment -> assessment.grade() == Grade.EXCELLENT)
-                .count();
+            .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
+            .filter(assessment -> assessment.grade() == Grade.EXCELLENT)
+            .count();
         long gradedCount = assessments.values().stream()
-                .filter(assessment -> assessment.grade().numericValue != null)
-                .count();
+            .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
+            .map(Assessment::grade)
+            .filter(Grade::hasNumericRepresentation)
+            .count();
         long requiredExcellentCount = (plannedGradedAssessments * 3L + 3L) / 4L;
         return excellentCount + plannedGradedAssessments - gradedCount >= requiredExcellentCount;
-    }
-
-    /** Записывает оценку за квалификационную работу; {@code null} — до защиты. */
-    public void setQualificationWorkGrade(Grade grade) {
-        if (grade != null && grade.numericValue == null) {
-            throw new IllegalArgumentException("За квалификационную работу нужна числовая оценка");
-        }
-        qualificationWorkGrade = grade;
     }
 
     /** Проверяет право на повышенную стипендию в последнем семестре. */
     public boolean canReceiveIncreasedScholarship() {
         return assessments.values().stream()
+            .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
                 .mapToInt(Assessment::semester)
                 .max()
                 .stream()
@@ -165,9 +193,11 @@ public class GradeBook {
     private boolean hasExcellentResultsInSemester(int semester) {
         var semesterAssessments = assessments.values().stream()
                 .filter(assessment -> assessment.semester() == semester)
+                .filter(assessment -> assessment.type() != AssessmentType.QUALIFICATION_WORK)
                 .toList();
         boolean hasNumericGrade = semesterAssessments.stream()
-                .anyMatch(assessment -> assessment.grade().numericValue != null);
+                .map(Assessment::grade)
+                .anyMatch(Grade::hasNumericRepresentation);
         boolean allResultsExcellent = semesterAssessments.stream()
             .allMatch(assessment -> assessment.type()
                 == AssessmentType.NON_DIFFERENTIATED_CREDIT
